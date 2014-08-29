@@ -1,0 +1,88 @@
+<html>
+<head>
+<style>
+OL { counter-reset: item }
+LI { display: block; margin-top: 2pt; }
+LI:before { content: "SR1." counters(item, ".") " "; counter-increment: item }
+A { color: black; }
+sup.c { color: darkred; font-size: 66%; border: 1px solid darkred; padding: 1px;}
+sup.d { color: darkblue; font-size: 66%; border: 1px solid darkblue; padding: 1px;}
+sup.q { color: darkorange; font-size: 66%; border: 1px solid orange; padding: 1px;}
+</style>
+</head>
+<body>
+
+<h1>Detailled Security Requirements List</h1>
+
+<h3>Derived from <a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project">OWASP ASVS v2</a></h3>
+
+<ol>
+
+<li>SSL (HTTPS) must be implemented on the whole site
+<ol><li>HTTP site must redirect to SSL site passing parameters using a whitelist approach<li>Site may use HTTP Headers such as <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS</a> to force users to be SSL (not available in HTTP)<li>Site may use an <a href="https://en.wikipedia.org/wiki/Extended_Validation_Certificate">Extended Validation Certificate</a></ol>
+
+<li>Session cookie must be securised
+<ol><li>Not shared between sub-domains<li>Transmitted in HTTPS only<li>Not accessible by JavaScript (HTTP-Only)</ol>
+
+<li>Session ID must be protected
+<ol><li>Never disclosed outside of cookie<li>Must change and be discarded at logout</ol>
+
+<li>Password information must be stored securely
+<ol><li>Using strong one-way hash function<li>Using unique salt per user</ol>
+
+<li>Password reset function must be secured
+
+<li>Audit trail must be implemented
+<ol><li>Trail of unauth attempts<li>Trail of login<li>Trail of modifications</ol>
+<li>A user list must be generated 
+<ol><li>The list must provide historical records on past accounts<li>The list may be linkable with a global dashboard</ol>
+
+<li>A dashboard containing updates needed list must be implemented
+
+<li>Website must be backuped and with diaster recovery features
+<ol><li>Backups of data must not be transmitted in the clear, put in public accessible storage or may be encrypted</ol>
+
+<li>Application updates must be planned for common security issues
+<ol><li>PHP issues<li>Drupal issues</ol>
+
+<li>Infrastructure server must be publicly accessible only by HTTP/HTTPS
+<ol><li>Direct access or file transfert access to server must be protected by an ACL</ol>
+
+<li>Authentification must be required for administrative functions
+<ol><li>Access controls with roles must be used using the least privilege principle<li>Brute force attempts must be mitigated<li>Security must be enforced server-side not client-side<li>Special attention should be given on rich text editors such as tinymce</ol>
+
+<li>Directory listing must be denied
+
+<li>Code must consider security mitigation
+<ol><li>against SQL injections<li>against XSS attacks<li>against exec or eval commands injection<li>against CSRF attacks<li>Development framework must be used and not bypassed</ol>
+
+<li>Code must be protected
+<ol><li>Repository of code must be password protected<li>Deployment must be securised (transport security and authentification required)</ol>
+
+<li>Data must be protected
+<ol><li>Access to production database should be limited<li>Database transferts should be securised (transport + auth)</ol>
+
+<li>Error output must not be shown to the end user
+
+<li>Sensitive information or actions must be transmitted securely
+<ol><li>By using SSL (HTTPS)<li>By using POST actions instead of GET<li>Forms must not be cached</ol>
+
+<li>TLS (SSL) must be used to any backend connections outside local LAN perimeter
+<ol><li>Connection should fail if certificate is invalid</ol>
+
+<li>Content type of Website outputs must be enforced
+
+<li>Click jacking must be mitigated trought HTTP headers
+
+<li>URLs redirections must be safe and not open
+
+<li>File uploads must be sanitized and not harm the site (ie. allow code execution)
+
+<li>Remote IFRAMEs and HTML 5 cross-domain resource sharing must not allow inclusion of arbitrary remote content (from ASVS V12.6)
+
+
+</ol>
+
+
+</body>
+</html>

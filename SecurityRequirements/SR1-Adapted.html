@@ -1,0 +1,93 @@
+<html>
+<body>
+<pre>
+<!-- TODO: rationalize this one into another section -->
+SSL (HTTPS) must be implemented on the whole site
+	HTTP site must redirect to SSL site passing parameters using a whitelist approach
+	Site may use HTTP Headers such as HSTS to force users to be SSL (not available in HTTP)
+	Site may use an Extended Validation Certificate
+
+Session cookie must be securised and Session ID must be protected
+	Session cookie must be securised
+		Not shared between sub-domains
+		Transmitted in HTTPS only
+		Not accessible by JavaScript (HTTP-Only)
+	Session ID must be protected
+		Never disclosed outside of cookie
+		Must change and be discarded at logout
+
+Audit trail must be implemented
+	Trail of unauth attempts
+	Trail of login
+	Trail of modifications
+
+A dashboard containing updates and users lists must be implemented
+	A user list must be generated (Already fullfiled by Drupal)
+		The list must provide historical records on past accounts
+		The list may be linkable with a global dashboard
+
+Drupal updates must be planned for common security issues
+
+DevOps security considerations
+	Website must be backuped and with diaster recovery features
+		Backups of data must not be transmitted in the clear, put in public accessible storage or may be encrypted
+
+	Updates must be planned for common security issues
+		PHP issues
+		Server issues
+
+	Infrastructure server must be publicly accessible only by HTTP/HTTPS
+		Direct access or file transfert access to server must be protected by an ACL
+
+	Code must be protected
+		Repository of code must be password protected
+		Deployment must be securised (transport security and authentification required)
+
+	Data must be protected
+		Access to production database should be limited
+		Database transferts should be securised (transport + auth)
+
+
+Server configuration security considerations
+	HTTP site must redirect to SSL site passing parameters using a whitelist approach
+	Site may use HTTP Headers such as HSTS to force users to be SSL (not available in HTTP)
+	Content type of Website outputs must be enforced
+	Click jacking must be mitigated trought HTTP headers
+
+
+User accounts must follow security policy
+	No generic accounts
+	Expiration of passwords
+	User id 1 blocked
+	Minimum 12 characters for passwords
+	May have an ACL for login.
+	Brute force attempts must be mitigated
+
+Coding security considerations
+	Authentification must be required for administrative functions
+		Access controls with roles must be used using the least privilege principle
+		Brute force attempts must be mitigated
+		Security must be enforced server-side not client-side
+		Special attention should be given on rich text editors such as tinymce
+
+	Code must consider security mitigation
+		against SQL injections
+		against XSS attacks
+		against exec or eval commands injection
+		against CSRF attacks
+		Development framework must be used and not bypassed
+
+	Sensitive information or actions must be transmitted securely
+		By using SSL (HTTPS)
+			TLS (SSL) must be used to any backend connections outside local LAN perimeter
+				Connection should fail if certificate is invalid
+		By using POST actions instead of GET
+		Forms must not be cached
+
+	URLs redirections must be safe and not open
+
+	Remote IFRAMEs and HTML 5 cross-domain resource sharing must not allow inclusion of arbitrary remote content (from ASVS V12.6)
+
+</pre>
+</body>
+</html>
